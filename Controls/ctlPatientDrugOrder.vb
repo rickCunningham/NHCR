@@ -66,7 +66,8 @@ Public Class ctlPatientDrugOrder
             cboDrugs.SelectedValue = .DrugID
             dblQty.Value = .DrugAmount
             cboUnit.SelectedValue = .UnitID
-
+            btnNewOrder.Enabled = .NewOrder
+            btnUpdate.Enabled = .UpdateOrder
         End With
 
 
