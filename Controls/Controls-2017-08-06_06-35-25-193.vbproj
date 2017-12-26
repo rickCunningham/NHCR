@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0D32330B-4186-4C7E-8490-D2AF695BD738}</ProjectGuid>
+    <ProjectGuid>{327257DE-9926-418A-8EB1-7F13606D63A9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>AccuPoint</RootNamespace>
-    <AssemblyName>Classes</AssemblyName>
+    <AssemblyName>Controls</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -18,7 +18,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>Classes.xml</DocumentationFile>
+    <DocumentationFile>Controls.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -27,7 +27,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>Classes.xml</DocumentationFile>
+    <DocumentationFile>Controls.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -43,8 +43,13 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar.Layout, Version=14.1.0.0, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
+    <Reference Include="DevComponents.DotNetBar.Schedule, Version=14.1.0.0, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
+    <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.0, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -63,9 +68,27 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DrugAttributeClass.vb" />
-    <Compile Include="DrugPurchaseClass.vb" />
-    <Compile Include="EventArgsClasses.vb" />
+    <Compile Include="ctlCopay.Designer.vb">
+      <DependentUpon>ctlCopay.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ctlCopay.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctlPatientDrugOrder.Designer.vb">
+      <DependentUpon>ctlPatientDrugOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ctlPatientDrugOrder.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomFlowLayoutPanel.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frmContactInfo.Designer.vb">
+      <DependentUpon>frmContactInfo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmContactInfo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -81,12 +104,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="PatientDrugOrderClass.vb" />
-    <Compile Include="ProviderClass.vb" />
-    <Compile Include="ProviderID.vb" />
-    <Compile Include="ProviderInfoArgs.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ctlCopay.resx">
+      <DependentUpon>ctlCopay.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctlPatientDrugOrder.resx">
+      <DependentUpon>ctlPatientDrugOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmContactInfo.resx">
+      <DependentUpon>frmContactInfo.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -106,14 +134,44 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Classes\Classes.vbproj">
+      <Project>{0d32330b-4186-4c7e-8490-d2af695bd738}</Project>
+      <Name>Classes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataAccess\DataAccess.vbproj">
       <Project>{11f9cd3f-5111-4a6f-ad99-44f3cc6d83da}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ImportUtils\ImportUtils.vbproj">
-      <Project>{99a45ed3-2b9e-472c-8691-3b88b3507355}</Project>
-      <Name>ImportUtils</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Save1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SearchNReplace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Info1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

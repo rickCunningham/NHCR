@@ -6,7 +6,7 @@ Public Class frmScheduler
 
     Private Sub frmScheduler_Load(sender As Object, e As EventArgs) Handles Me.Load
 
-        CalendarView1.Visible = False
+
 
         Dim _Model As New CalendarModel()
         'Dim workDay As WorkDay = _Model.WorkDays(DayOfWeek.Monday)
@@ -30,9 +30,8 @@ Public Class frmScheduler
 
         Next
         CalendarView1.CalendarModel = _Model
-        CalendarView1.SelectedView = eCalendarView.Month
-        LoadAppointments()
-        CalendarView1.Visible = True
+
+        LoadAppointments
     End Sub
 
     Private Sub LoadAppointments()

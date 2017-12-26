@@ -69,9 +69,9 @@ Public Class DBAccess
                     adapt.Fill(dt)
 
                     If dt.Rows.Count > 0 Then
-                        Result.AcctID = CInt(dt.Rows(0)("AcctNum"))
-                        Result.FirstName = CType(dt.Rows(0)("FirstName"), String)
-                        Result.LastName = CType(dt.Rows(0)("LastName"), String)
+                        Result.AcctID = dt.Rows(0)("AcctNum")
+                        Result.FirstName = dt.Rows(0)("FirstName")
+                        Result.LastName = dt.Rows(0)("LastName")
                     End If
                 End Using
             End Using
@@ -361,7 +361,7 @@ Public Class DBDrugs
     End Function
 
 
-    Public Shared Function GetDrugs(ByVal Optional DrugID As Integer = 0, ByVal Optional BenchmarkID As Integer = 0) As DataTable
+    Public Shared Function GetDrugs(ByVal Optional DrugID As Integer = 0, ByVal Optional BenchmarkID As Integer = 0)
         Dim result As New DataTable
 
         Try
@@ -393,7 +393,7 @@ Public Class DBDrugs
         Return result
     End Function
 
-    Public Shared Function GetDrugMfgs(ByVal Optional MfgId As Integer = 0) As DataTable
+    Public Shared Function GetDrugMfgs(ByVal Optional MfgId As Integer = 0)
         '
         Dim result As New DataTable
 
@@ -427,7 +427,7 @@ Public Class DBDrugs
     End Function
 
     '
-    Public Shared Function GetDrugSuppliers(ByVal Optional SupplierId As Integer = 0) As DataTable
+    Public Shared Function GetDrugSuppliers(ByVal Optional SupplierId As Integer = 0)
         '
         Dim result As New DataTable
 
@@ -461,7 +461,7 @@ Public Class DBDrugs
     End Function
 
     '
-    Public Shared Function GetDrugOrderCompanies(ByVal Optional OrderCoID As Integer = 0) As DataTable
+    Public Shared Function GetDrugOrderCompanies(ByVal Optional OrderCoID As Integer = 0)
         '
         Dim result As New DataTable
 
@@ -495,7 +495,7 @@ Public Class DBDrugs
     End Function
     '
 
-    Public Shared Function GetDrugCategories(ByVal Optional CategoryID As Integer = 0) As DataTable
+    Public Shared Function GetDrugCategories(ByVal Optional CategoryID As Integer = 0)
         '
         Dim result As New DataTable
 
@@ -562,7 +562,7 @@ Public Class DBDrugs
     End Function
 
     Public Shared Function GetDrugStorage(ByVal Optional StorageID As Integer = 0) As Object
-
+        'sp_GetDrugStorage
         Dim result As New DataTable
 
         Try
@@ -595,7 +595,7 @@ Public Class DBDrugs
     End Function
 
     Public Shared Function GetDrugVials(ByVal DrugID As Integer) As DataTable
-
+        'sp_GetDrugStorage
         Dim result As New DataTable
 
         Try
@@ -612,75 +612,6 @@ Public Class DBDrugs
 
                     adapt.Fill(result)
                     result.TableName = "DrugVials"
-
-                    If result.Rows.Count <= 0 Then
-
-                        result = Nothing
-                    End If
-
-                End Using
-            End Using
-        Catch ex As SqlException
-        End Try
-
-
-        Return result
-    End Function
-
-
-
-
-    Public Shared Function dbGet_With_DrugVialOptions() As DataTable
-
-        Dim result As New DataTable
-
-        Try
-            Dim con As SqlConnection = GetConnection(Access.Develop)
-
-            Using con
-                Using cmd As New SqlCommand
-                    cmd.Connection = con
-                    cmd.CommandType = CommandType.StoredProcedure
-                    cmd.CommandText = "sp_GetDrugs_with_VialOptions"
-
-                    Dim adapt As New SqlDataAdapter(cmd)
-                    con.Open()
-
-                    adapt.Fill(result)
-                    result.TableName = "Drugs_w_VialOptiopns"
-
-                    If result.Rows.Count <= 0 Then
-
-                        result = Nothing
-                    End If
-
-                End Using
-            End Using
-        Catch ex As SqlException
-        End Try
-
-
-        Return result
-    End Function
-
-    Public Shared Function dbGetDrugVialOptions(ByVal DrugID As Integer) As DataTable
-
-        Dim result As New DataTable
-
-        Try
-            Dim con As SqlConnection = GetConnection(Access.Develop)
-
-            Using con
-                Using cmd As New SqlCommand
-                    cmd.Connection = con
-                    cmd.CommandType = CommandType.StoredProcedure
-                    cmd.CommandText = "sp_GetDrugVialOptions"
-                    cmd.Parameters.AddWithValue("@DrugID", DrugID)
-                    Dim adapt As New SqlDataAdapter(cmd)
-                    con.Open()
-
-                    adapt.Fill(result)
-                    result.TableName = "DrugVialOptiopns"
 
                     If result.Rows.Count <= 0 Then
 
@@ -863,38 +794,6 @@ Public Class DBProviders
 
         Return dt
     End Function
-
-
-    Public Shared Function GetActiveProvider_ByID(ByVal ProviderID As Integer) As DataTable
-        Dim result As New DataTable
-        result = Nothing
-        Try
-            Dim con As SqlConnection = GetConnection(Access.Develop)
-
-            Using con
-                Using cmd As New SqlCommand
-                    cmd.Connection = con
-                    cmd.CommandType = CommandType.StoredProcedure
-                    cmd.CommandText = "sp_GetActiveProvider_ByID"
-                    cmd.Parameters.AddWithValue("@ProviderID", ProviderID)
-
-                    Dim adapt As New SqlDataAdapter(cmd)
-                    con.Open()
-
-
-                    adapt.Fill(result)
-                    If result.Rows.Count <= 0 Then result = Nothing
-
-                End Using
-            End Using
-        Catch ex As SqlException
-        End Try
-
-
-        Return result
-
-
-    End Function
 End Class
 
 
@@ -915,7 +814,7 @@ Public Class DbPatientOrders
 
 
                     con.Open()
-                    result = CBool(cmd.ExecuteScalar)
+                    result = cmd.ExecuteScalar
 
 
                 End Using

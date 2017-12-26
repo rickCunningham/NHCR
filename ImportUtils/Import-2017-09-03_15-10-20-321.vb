@@ -133,24 +133,4 @@ Public Class Import
         Return result
     End Function
 
-
-    Public Shared Function GetVialOptions(ByVal dt As DataTable) As DataTable
-
-        Dim result As New DataTable
-
-        Dim Options = (From Item In dt
-                       Select New With {.VialQtyID = Item.Field(Of Integer)("VialQtyID"),
-                                       .Qty = 0,
-                                       .VialQty = Item.Field(Of String)("VialQty")}).ToList
-
-        If Options.Count > 0 Then
-
-            result = Options.ToDataTable
-        Else
-            result = Nothing
-        End If
-
-        Return result
-    End Function
-
 End Class

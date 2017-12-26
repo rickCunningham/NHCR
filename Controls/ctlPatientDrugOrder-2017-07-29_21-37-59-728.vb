@@ -8,8 +8,6 @@ Public Class ctlPatientDrugOrder
         Update
     End Enum
 
-    Public Event ProviderContact_Clicked(ByVal sender As Object, ByVal e As ProviderInfoArgs)
-
 
     Public Property CurrentPatientOrder As PatientDrugOrderClass
 
@@ -87,26 +85,10 @@ Public Class ctlPatientDrugOrder
     Private Sub lblInfo_Click(sender As Object, e As EventArgs) Handles lblInfo.Click
 
         lblInfo.Tag = cboProviders.SelectedItem
-        If Not IsNothing(lblInfo.Tag) Then
 
-            Dim ShowProviderID As Integer = DirectCast(cboProviders.SelectedItem, DataRowView).Row("ProviderID")
-            If ShowProviderID > 0 Then
+        Dim ShowProviderID As Integer = DirectCast(cboProviders.SelectedItem, DataRowView).Row("ProviderID")
 
-                'MessageBox.Show(String.Format("Provider ID {0}", ShowProviderID))
-
-                Dim ProviderInfo As New ProviderInfoArgs(ShowProviderID)
-
-                'With ProviderInfo
-                '    .ProviderID = 
-                'End With
-
-                RaiseEvent ProviderContact_Clicked(Me, ProviderInfo)
-
-                'Dim f As New frmContactInfo
-
-                'f.ContactActivate(ShowProviderID)
-            End If
-        End If
+        MessageBox.Show(String.Format("Provider ID {0}", ShowProviderID))
 
     End Sub
 

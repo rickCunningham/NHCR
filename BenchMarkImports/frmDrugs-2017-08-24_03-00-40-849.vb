@@ -40,8 +40,8 @@ Public Class frmDrugs
 
             Dim ActiveRow As GridRow = e.GridPanel.ActiveRow
             Dim DrugId As Integer = ActiveRow("DrugId").Value
-            Dim BenchMarkID As Integer = Cast.DbNullInt(ActiveRow("BenchMarkID").Value)
-            Dim CPTCode As String = Cast.DbNullStr(ActiveRow("CPTCode").Value)
+            Dim BenchMarkID As Integer = ActiveRow("BenchMarkID").Value
+            Dim CPTCode As String = ActiveRow("CPTCode").Value
 
             CtlCopay1.Activate(DrugId)
         End If

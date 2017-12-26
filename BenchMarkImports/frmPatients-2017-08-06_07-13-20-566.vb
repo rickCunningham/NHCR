@@ -1,4 +1,3 @@
-Imports AccuPoint
 Imports DevComponents.DotNetBar.SuperGrid
 
 Public Class frmPatients
@@ -49,17 +48,5 @@ Public Class frmPatients
             CtlPatientDrugOrder1.Activate(AcctNum)
         End If
 
-    End Sub
-
-    Private Function GetProviderName(ByVal ProviderID As Integer) As String
-
-    End Function
-
-
-    Private Sub CtlPatientDrugOrder1_ProviderContact_Clicked(sender As Object, e As ProviderInfoArgs) Handles CtlPatientDrugOrder1.ProviderContact_Clicked
-
-
-        Dim msg As String = String.Format("Provider Clicked is : {0}", GetProviderName(e.ProviderID))
-        'MessageBox.Show()
     End Sub
 End Class

@@ -74,14 +74,32 @@
     <Compile Include="ctlCopay.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="ctlDrugLineItem.Designer.vb">
+      <DependentUpon>ctlDrugLineItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ctlDrugLineItem.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ctlPatientDrugOrder.Designer.vb">
       <DependentUpon>ctlPatientDrugOrder.vb</DependentUpon>
     </Compile>
     <Compile Include="ctlPatientDrugOrder.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="ctlProviderContacts.Designer.vb">
+      <DependentUpon>ctlProviderContacts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ctlProviderContacts.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="CustomFlowLayoutPanel.vb">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frmContactInfo.Designer.vb">
+      <DependentUpon>frmContactInfo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmContactInfo.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -103,8 +121,17 @@
     <EmbeddedResource Include="ctlCopay.resx">
       <DependentUpon>ctlCopay.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ctlDrugLineItem.resx">
+      <DependentUpon>ctlDrugLineItem.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ctlPatientDrugOrder.resx">
       <DependentUpon>ctlPatientDrugOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctlProviderContacts.resx">
+      <DependentUpon>ctlProviderContacts.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmContactInfo.resx">
+      <DependentUpon>frmContactInfo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -163,6 +190,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

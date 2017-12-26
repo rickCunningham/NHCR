@@ -2,7 +2,7 @@ Imports DevComponents.DotNetBar
 
 Public Class frmNav
 
-    Enum forms
+    Enum Forms
         Import
         Schedule
         Drugs
@@ -17,10 +17,10 @@ Public Class frmNav
     Private Sub frmNav_Load(sender As Object, e As EventArgs) Handles Me.Load
         Loading = True
         Dim FormList As New List(Of FormItems)
-        FormList.Add(New FormItems With {.ValueMember = forms.Import, .DisplayMember = "Imports"})
-        FormList.Add(New FormItems With {.ValueMember = forms.Schedule, .DisplayMember = "Scheduler"})
-        FormList.Add(New FormItems With {.ValueMember = forms.Drugs, .DisplayMember = "Drugs"})
-        FormList.Add(New FormItems With {.ValueMember = forms.Patients, .DisplayMember = "Patients"})
+        FormList.Add(New FormItems With {.ValueMember = Forms.Import, .DisplayMember = "Imports"})
+        FormList.Add(New FormItems With {.ValueMember = Forms.Schedule, .DisplayMember = "Scheduler"})
+        FormList.Add(New FormItems With {.ValueMember = Forms.Drugs, .DisplayMember = "Drugs"})
+        FormList.Add(New FormItems With {.ValueMember = Forms.Patients, .DisplayMember = "Patients"})
 
         ComboBoxEx1.DataSource = FormList
         ComboBoxEx1.ValueMember = "ValueMember"
@@ -36,13 +36,13 @@ Public Class frmNav
 
             Dim f As New OfficeForm
             Select Case ComboBoxEx1.SelectedValue
-                Case forms.Import
+                Case Forms.Import
                     f = New frmImports
-                Case forms.Schedule
+                Case Forms.Schedule
                     f = New frmScheduler
-                Case forms.Drugs
+                Case Forms.Drugs
                     f = New frmDrugs
-                Case forms.Patients
+                Case Forms.Patients
                     f = New frmPatients
             End Select
             f.ShowDialog()
